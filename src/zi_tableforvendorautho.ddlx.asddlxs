@@ -1,0 +1,107 @@
+@Metadata.layer: #CUSTOMER
+@UI: {
+  headerInfo: {
+    typeName: 'TableForVendorAutho', 
+    typeNamePlural: 'TableForVendorAuthos', 
+    title: {
+      type: #STANDARD, 
+      label: 'Table For Vendor Authorization', 
+      value: 'TabCode'
+    }
+  }
+}
+annotate view ZI_TableForVendorAutho with
+{
+  @UI.identification: [ {
+    position: 1 
+  } ]
+  @UI.lineItem: [ {
+    position: 1 
+  } ]
+  @UI.facet: [ {
+    id: 'ZI_TableForVendorAutho', 
+    purpose: #STANDARD, 
+    type: #IDENTIFICATION_REFERENCE, 
+    label: 'Table For Vendor Authorization', 
+    position: 1 
+  } ]
+  TabCode;
+  
+  @UI.identification: [ {
+    position: 2 
+  } ]
+  @UI.lineItem: [ {
+    position: 2 
+  } ]
+  TabName;
+  
+  @UI.identification: [ {
+    position: 3 , 
+    label: 'UserId'
+  } ]
+  @UI.lineItem: [ {
+    position: 3 , 
+    label: 'UserId'
+  } ]
+  UserId;
+  
+  @UI.identification: [ {
+    position: 4 , 
+    label: 'Create'
+  } ]
+  @UI.lineItem: [ {
+    position: 4 , 
+    label: 'Create'
+  } ]
+  Create1;
+  
+  @UI.identification: [ {
+    position: 5 , 
+    label: 'Change'
+  } ]
+  @UI.lineItem: [ {
+    position: 5 , 
+    label: 'Change'
+  } ]
+  Change;
+  
+  @UI.identification: [ {
+    position: 6 , 
+    label: 'Display'
+  } ]
+  @UI.lineItem: [ {
+    position: 6 , 
+    label: 'Display'
+  } ]
+  Display;
+  
+  @UI.identification: [ {
+    position: 7 , 
+    label: 'DeletionUserId'
+  } ]
+  @UI.lineItem: [ {
+    position: 7 , 
+    label: 'DeletionUserId'
+  } ]
+  DeletionUserId;
+  
+  @UI.identification: [ {
+    position: 8 , 
+    label: 'ApproverId1'
+  } ]
+  @UI.lineItem: [ {
+    position: 8 , 
+    label: 'ApproverId1'
+  } ]
+  ApproverId1;
+  
+  @UI.identification: [ {
+    position: 9 , 
+    label: 'ApproverId2'
+  } ]
+  @UI.lineItem: [ {
+    position: 9 , 
+    label: 'ApproverId2'
+  } ]
+  ApproverId2;
+}

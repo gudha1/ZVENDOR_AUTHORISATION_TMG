@@ -1,0 +1,5 @@
+@ObjectModel.leadingEntity.name: 'ZI_TableForVendorAutho_S'
+define service ZUI_TABLEFORVENDORAUTHO {
+  expose ZI_TABLEFORVENDORAUTHO_S as TableForVendorAuAll;
+  expose ZI_TABLEFORVENDORAUTHO as TableForVendorAutho;
+}

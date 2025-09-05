@@ -1,0 +1,99 @@
+managed with additional save implementation in class ZBP_I_TABLEFORVENDORAUTHO_S unique;
+strict;
+with draft;
+define behavior for ZI_TableForVendorAutho_S alias TableForVendorAuAll
+draft table ZVENDOR_AUT_D_S
+with unmanaged save
+lock master total etag LastChangedAtMax
+authorization master( global )
+
+{
+  field ( readonly )
+   SingletonID;
+
+  field ( features : instance )
+   TransportRequestID;
+
+  field ( notrigger )
+   SingletonID,
+   LastChangedAtMax;
+
+
+  update;
+  internal create;
+  internal delete;
+
+  draft action ( features : instance ) Edit with additional implementation;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+  action ( features : instance ) SelectCustomizingTransptReq parameter D_SelectCustomizingTransptReqP result [1] $self;
+
+  association _TableForVendorAutho { create ( features : instance ); with draft; }
+
+  validation ValidateTransportRequest on save ##NOT_ASSIGNED_TO_DETACT { create; update; }
+
+  side effects {
+    action SelectCustomizingTransptReq affects $self;
+  }
+  }
+
+define behavior for ZI_TableForVendorAutho alias TableForVendorAutho ##UNMAPPED_FIELD
+persistent table ZVENDOR_AUTH_TAB
+draft table ZVENDOR_AUTH__D
+etag master Locallastchangedat
+lock dependent by _TableForVendorAuAll
+authorization dependent by _TableForVendorAuAll
+
+{
+  field ( mandatory : create )
+   TabCode,
+   TabName;
+
+  field ( readonly )
+   SingletonID,
+   Localcreatedby,
+   Localcreatedat,
+   Locallastchangedby,
+   Locallastchangedat,
+   Lastchangedat;
+
+  field ( readonly : update )
+   TabCode,
+   TabName;
+
+  field ( notrigger )
+   SingletonID,
+   Localcreatedby,
+   Localcreatedat,
+   Locallastchangedby,
+   Locallastchangedat,
+   Lastchangedat;
+
+
+  update( features : global );
+  delete( features : global );
+
+  mapping for ZVENDOR_AUTH_TAB
+  {
+    TabCode = TAB_CODE;
+    TabName = TAB_NAME;
+    UserId = USER_ID;
+    Create1 = CREATE1;
+    Change = CHANGE;
+    Display = DISPLAY;
+    DeletionUserId = DELETION_USER_ID;
+    ApproverId1 = APPROVER_ID_1;
+    ApproverId2 = APPROVER_ID_2;
+    Localcreatedby = LOCALCREATEDBY;
+    Localcreatedat = LOCALCREATEDAT;
+    Locallastchangedby = LOCALLASTCHANGEDBY;
+    Locallastchangedat = LOCALLASTCHANGEDAT;
+    Lastchangedat = LASTCHANGEDAT;
+  }
+
+  association _TableForVendorAuAll { with draft; }
+
+  validation ValidateTransportRequest on save ##NOT_ASSIGNED_TO_DETACT { create; update; delete; }
+}
